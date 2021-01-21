@@ -32,7 +32,7 @@ class Plateau:
         return self
 
 
-l=Plateau(8)
+"""l=Plateau(8)
  
 print(l, "\n")
 print(l.initialisation(), "\n")
@@ -41,4 +41,4 @@ print(l.initialisation(), "\n")
 print(l.add_blanc(3,2), "\n")
 print(l.add_noir(4,2), "\n")
 
-print(l.flip(3,2),"\n")
+print(l.flip(3,2),"\n")"""
