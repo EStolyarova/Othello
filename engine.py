@@ -21,7 +21,7 @@ class Engine:
 
         # demander les coordonnees (en str)
         print("c'est le tour du joueur blanc (X) \n")
-        tempo = input("Donner la position du pion")
+        tempo = input("Donner la position du pion blanc (X)")
         self.x = dic_matching[tempo][0]
         self.y = dic_matching[tempo][1]
         return self
@@ -39,7 +39,7 @@ class Engine:
             dic_matching[list3[i]] = list4[i]
         # demander les coordonnees (en str)
         print("c'est le tour du joueur noir (O) \n")
-        tempo = input("Donner la position du pion")
+        tempo = input("Donner la position du pion noir (0)")
         self.x = dic_matching[tempo][0]
         self.y = dic_matching[tempo][1]
         return self
@@ -54,7 +54,7 @@ class Engine:
         output:
         liste_right: contient liste de coordonnées à changer.
         """
-    
+
         liste_right=[]
         if self.y==7:
             pass
@@ -63,14 +63,18 @@ class Engine:
             i=self.y+1
             #la boucle vérifie la valeur(couleur) des cases se trouvant après y si elle contraire de la valeur de la case(x,y)
             
-            while pions[self.x][i]==abs(pions[self.x][self.y]-1) and i<=8:
+            while i<len(pions) and pions[self.x][i]==abs(pions[self.x][self.y]-1):
                 i=i+1
                 liste_right.append((self.x, i-1))
             
             # on ajoute à la liste le tuple contenant la coordonnée et la 
-            #valeur de la derinère case causant la sortie de la boucle
-            
-            liste_right.append((self.x, i, pions[self.x][i]))
+            #valeur de la derinère case causant la sortie de la boucle           
+
+
+            if i<len(pions):
+                liste_right.append((self.x, i, pions[self.x][i]))
+            else:
+                liste_right.append((self.x, i, 2))
             
             #on teste la valeur du dernier élement de la liste, 
             #  si elle égale à la valeur du joueur en cours 
@@ -91,9 +95,10 @@ class Engine:
         else:
 
             i=self.y-1
-            while pions[self.x][i]==abs(pions[self.x][self.y]-1) and i>=0:
+            while i>=0 and pions[self.x][i]==abs(pions[self.x][self.y]-1):
                 i=i-1
                 liste_left.append((self.x, i+1))
+
             liste_left.append((self.x, i, pions[self.x][i]))
             
             if liste_left[-1][2]==pions[self.x][self.y]:
@@ -115,7 +120,7 @@ class Engine:
         else:
             i=self.x-1
             #la boucle vérifie la valeur(couleur) des cases se trouvant après y si elle contraire de la valeur de la case(x,y)
-            while pions[i][self.y]==abs(pions[self.x][self.y]-1) and i>=0:
+            while i>=0 and pions[i][self.y]==abs(pions[self.x][self.y]-1):
                 i=i-1
                 liste_up.append((i+1, self.y))
             # on ajoute à la liste le tuple contenant la coordonnée et la 
@@ -133,6 +138,7 @@ class Engine:
 
     def check_down(self,pions):
         liste_down=[]
+
         if self.x==7:
             pass
         else:
@@ -140,11 +146,16 @@ class Engine:
             i=self.x+1
             
             #la boucle vérifie la valeur(couleur) des cases se trouvant après y si elle contraire de la valeur de la case(x,y)
-            while pions[i][self.y]==abs(pions[self.x][self.y]-1) and i<=6:
+            while  i<len(pions) and pions[i][self.y]==abs(pions[self.x][self.y]-1):
                 i=i+1
                 liste_down.append((i-1, self.y))
 
-            liste_down.append((i, self.y, pions[i][self.y]))
+            if i<len(pions):
+                liste_down.append((i, self.y, pions[i][self.y]))
+            else:
+                liste_down.append((i, self.y, 2))
+
+
             if liste_down[-1][2]==pions[self.x][self.y]:
             #on  récupère la liste des coordonnées à changer lorsque le test est True
                 liste_down=liste_down[:-1]
@@ -155,6 +166,7 @@ class Engine:
 
 
     def check_DR(self,pions):
+        print(len(pions))
         liste_DR=[]
         if self.x==7 or self.y==7:
             pass
@@ -162,13 +174,16 @@ class Engine:
 
             i=self.x+1
             j=self.y+1
-                
-            while pions[i][j]==abs(pions[self.x][self.y]-1) and i<=8 and j<=8:
+            
+            while i<len(pions) and j<len(pions) and pions[i][j]==abs(pions[self.x][self.y]-1) :
                 i=i+1
                 j+=1
                 liste_DR.append((i-1, j-1))
             
-            liste_DR.append((i, j, pions[i][j]))
+            if i<len(pions) and j<len(pions):
+                liste_DR.append((i, j, pions[i][j]))
+            else:
+                liste_DR.append((i, j, 2))
             
             if liste_DR[-1][2]==pions[self.x][self.y]:
             
@@ -185,14 +200,17 @@ class Engine:
 
             i=self.x+1
             j=self.y-1
-            
                     
-            while pions[i][j]==abs(pions[self.x][self.y]-1) and i<=8 and j>=0:
+            while i<len(pions) and j>=0 and pions[i][j]==abs(pions[self.x][self.y]-1) :
                 i=i+1
                 j-=1
                 liste_DL.append((i-1, j+1))
             
-            liste_DL.append((i, j, pions[i][j]))
+            
+            if i<len(pions) and j<len(pions):
+                liste_DL.append((i, j, pions[i][j]))
+            else:
+                liste_DL.append((i, j, 2))
             
             if liste_DL[-1][2]==pions[self.x][self.y]:
             
@@ -210,12 +228,15 @@ class Engine:
             j=self.y+1
            
             
-            while pions[i][j]==abs(pions[self.x][self.y]-1) and i>=0 and j<=8:
+            while i>=0 and j<len(pions) and pions[i][j]==abs(pions[self.x][self.y]-1) :
                 i=i-1
                 j=j+1
                 liste_UR.append((i+1, j-1))
             
-            liste_UR.append((i, j, pions[i][j]))
+            if i<len(pions) and j<len(pions):
+                liste_UR.append((i, j, pions[i][j]))
+            else:
+                liste_UR.append((i, j, 2))
             
             if liste_UR[-1][2]==pions[self.x][self.y]:
             #on  récupère la liste des coordonnées à changer lorsque le test est True
@@ -234,7 +255,7 @@ class Engine:
             j=self.y-1
             
             
-            while pions[i][j]==abs(pions[self.x][self.y]-1) and i>=0 and j>=0:
+            while i>=0 and j>=0 and pions[i][j]==abs(pions[self.x][self.y]-1) :
                 i=i-1
                 j=j-1
                 liste_UL.append((i+1, j+1))
