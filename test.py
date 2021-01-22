@@ -11,7 +11,7 @@ p.initialisation()
 print(p,"\n")
 
 # la boucle pour 5 tours
-for i in range(1, 6):
+for i in range(1, 64):
     if i%2 == 0:
         e.get_coordianate_blanc()
         p.add_blanc(e.x,e.y)
