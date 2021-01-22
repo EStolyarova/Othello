@@ -8,15 +8,40 @@ class Engine:
 
         
     def get_coordianate_blanc(self):
+        # creation du dictionnaire de matching entre
+        # les coordonnes donnees par le joueur
+        # et les coordonnees x et y numeriques
+        list1 = list("12345678")
+        list2 = list("ABCDEFGH")
+        list3 = [i+j for i in list1 for j in list2]
+        list4 = [(i, j) for i in range(len(list1)) for j in range(len(list2))]
+        dic_matching = dict()
+        for i in range(64):
+            dic_matching[list3[i]] = list4[i]
+
+        # demander les coordonnees (en str)
         print("c'est le tour du joueur blanc (X) \n")
-        self.x=int(input("Donnez la position x"))
-        self.y=int(input("Donnez la position y"))
+        tempo = input("Donner la position du pion")
+        self.x = dic_matching[tempo][0]
+        self.y = dic_matching[tempo][1]
         return self
 
     def get_coordianate_noir(self):
+        # creation du dictionnaire de matching entre
+        # les coordonnes donnees par le joueur
+        # et les coordonnees x et y numeriques
+        list1 = list("12345678")
+        list2 = list("ABCDEFGH")
+        list3 = [i+j for i in list1 for j in list2]
+        list4 = [(i, j) for i in range(len(list1)) for j in range(len(list2))]
+        dic_matching = dict()
+        for i in range(64):
+            dic_matching[list3[i]] = list4[i]
+        # demander les coordonnees (en str)
         print("c'est le tour du joueur noir (O) \n")
-        self.x=int(input("Donnez la position x"))
-        self.y=int(input("Donnez la position y"))
+        tempo = input("Donner la position du pion")
+        self.x = dic_matching[tempo][0]
+        self.y = dic_matching[tempo][1]
         return self
 
     def check_right(self,pions):
