@@ -1,7 +1,7 @@
 
 lst_of_lst = [[2]*8 for i in range (8)]
 
-l0 = "     A   B   C   D   E   F   G   H  "
+l0 = "  une nouvelle chaine de caracteres "
 l1 = "   +---+---+---+---+---+---+---+---+"
 l2 = " 1 |   |   |   |   |   |   |   |   |"
 l3 = "   +---+---+---+---+---+---+---+---+"
