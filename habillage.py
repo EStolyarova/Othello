@@ -1,8 +1,7 @@
-
 lst_of_lst = [[2]*8 for i in range (8)]
 
 
-l0 = "    aA   bB   Ciao Elena   D   E   F   G   H  "
+l0 = "   A   B   C   E   D   E   F   G   H"
 l1 = "   +---+---+---+---+---+---+---+---+"
 l2 = " 1 |   |   |   |   |   |   |   |   |"
 l3 = "   +---+---+---+---+---+---+---+---+"
@@ -38,7 +37,6 @@ lst_of_lst[5][4] = 0
 lst_of_lst[0][5] = 1
 
 print("\n".join(["".join(str(elem)) for elem in lst_of_lst]))
-
 """
 
 to_change = [(0, 1, 1), (5, 2, 1), (6, 3, 0), (5, 4, 0), (0, 5, 1)]
